@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUI Support Center</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* 联系方式列表样式 */
+        .contact-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.2s;
+        }
+
+        .contact-item:hover {
+            background-color: #e2e6ea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .contact-item .icon {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-text strong {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .contact-text span {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="lang-selector">
+                <span class="current-lang" data-i18n="lang_select">语言 / Language</span>
+                <ul class="lang-dropdown">
+                    <li><a href="#" onclick="changeLanguage('zh')">中文 (Chinese)</a></li>
+                    <li><a href="#" onclick="changeLanguage('en')">English</a></li>
+                    <li><a href="#" onclick="changeLanguage('ru')">Русский (Russian)</a></li>
+                    <li><a href="#" onclick="changeLanguage('kk')">Қазақ (Kazakh)</a></li>
+                    <li><a href="#" onclick="changeLanguage('uz')">Oʻzbek (Uzbek)</a></li>
+                    <li><a href="#" onclick="changeLanguage('mn')">Монгол (Mongolian)</a></li>
+                    <li><a href="#" onclick="changeLanguage('ua')">українська(Ukrainian)</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-header">
+            <div class="logo">
+                RUI <span data-i18n="tech_support">技术支持</span>
+            </div>
+
+            <div class="mobile-menu-toggle" onclick="toggleMenu()">
+                ☰
+            </div>
+
+            <nav class="nav-menu" id="navMenu">
+                <div class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)" data-i18n="menu_gnss">GNSS 接收机</div>
+                    <div class="dropdown-menu">
+                        <div class="product-group">
+                            <span class="product-title">i100</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('i100'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('i100'); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                         <div class="product-group">
+                            <span class="product-title">i93</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('i93'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('i93'); return false;" data-i18n="link_firmware">固件</a>  
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                        <div class="product-group">
+                            <span class="product-title">i89</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('i89'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('i89'); return false;" data-i18n="link_firmware">固件</a>  
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                        <div class="product-group">
+                            <span class="product-title">i85</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('i85'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('i85'); return false;" data-i18n="link_firmware">固件</a>  
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                         <div class="product-group">
+                            <span class="product-title">i83</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('i83'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('i83'); return false;" data-i18n="link_firmware">固件</a> 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                         <div class="product-group">
+                            <span class="product-title">i76</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('i76'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('i76'); return false;" data-i18n="link_firmware">固件</a> 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                         <div class="product-group">
+                            <span class="product-title">i73</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('i73'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('i73'); return false;" data-i18n="link_firmware">固件</a> 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)" data-i18n="menu_mobile">移动测绘</div>
+                    <div class="dropdown-menu">
+                        <div class="product-group">
+                            <span class="product-title">LT60H</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('lt60h'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('lt60h'); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                        <div class="product-group">
+                            <span class="product-title">LT700</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('lt700'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('lt700'); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                         <div class="product-group">
+                            <span class="product-title">LT700H</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('lt700h'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('lt700h'); return false;"data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                        <div class="product-group">
+                            <span class="product-title">LT800</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('lt800'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('lt800'); return false;"data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                         <div class="product-group">
+                            <span class="product-title">LT800H</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('lt800h'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('lt800h'); return false;"data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                         <div class="product-group">
+                            <span class="product-title">LandStar</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal('landstar'); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal('landstar'); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-link" data-i18n="menu_ag">农业导航</div>
+                    <div class="dropdown-menu">
+                         <div class="product-group">
+                            <span class="product-title">NX510</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal(''); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal(''); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-link" data-i18n="menu_marine">海洋测量</div>
+                    <div class="dropdown-menu">
+                         <div class="product-group">
+                            <span class="product-title">Apache 3</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal(''); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal(''); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                        <div class="product-group">
+                            <span class="product-title">Apache 4</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal(''); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal(''); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                        <div class="product-group">
+                            <span class="product-title">Apache 6</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal(''); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal(''); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <div class="nav-link" data-i18n="menu_uav">无人机系统</div>
+                    <div class="dropdown-menu">
+                         <div class="product-group">
+                            <span class="product-title">X500</span>
+                            <div class="product-links">
+                                <a href="#" onclick="openManualModal(''); return false;" data-i18n="link_manual">说明书</a> | 
+                                <a href="#" onclick="openFirmwareModal(''); return false;" data-i18n="link_firmware">固件</a> | 
+                                <a href="#" data-i18n="link_faq">FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <h1 data-i18n="hero_title">欢迎来到 <span>RUI'S</span> 技术支持</h1>
+        <p data-i18n="hero_desc">您的说明书、固件和技术支持一站式中心。</p>
+    </div>
+
+    <div class="content-container">
+        <div class="card">
+            <h3 data-i18n="card_fw_title">你好</h3>
+            <p data-i18n="card_fw_desc">欢迎关注</p>
+            <a href="https://flic.kr/ps/3YHpp5" target="_blank"; style="color:var(--primary-color); font-weight:bold;" data-i18n="btn_download">更多 ></a>
+        </div>
+        <div class="card">
+            <h3 data-i18n="card_doc_title">敬请期待</h3>
+            <p data-i18n="card_doc_desc">敬请期待</p>
+            <a href="https://flic.kr/ps/3YHpp5" target="_blank"; style="color:var(--primary-color); font-weight:bold;" data-i18n="btn_browse">浏览 ></a>
+        </div>
+        <div class="card">
+            <h3 data-i18n="card_ticket_title">售后工单</h3>
+            <p data-i18n="card_ticket_desc">遇到技术难题？提交工单，我们的工程师将为您解答。</p>
+            
+            <a href="#" onclick="openContactModal(); return false;" style="color:var(--primary-color); font-weight:bold;" data-i18n="btn_submit">提交 ></a>
+        </div>
+    </div>
+
+    <script>
+        // 1. 移动端菜单开关
+        function toggleMenu() {
+            const nav = document.getElementById('navMenu');
+            nav.classList.toggle('active');
+        }
+
+        // 2. 移动端子菜单开关
+        function toggleSubmenu(element) {
+            if (window.innerWidth <= 768) {
+                const dropdown = element.nextElementSibling;
+                if (dropdown && dropdown.classList.contains('dropdown-menu')) {
+                    if (dropdown.style.display === 'block') {
+                        dropdown.style.display = 'none';
+                        element.style.color = 'inherit'; 
+                    } else {
+                        document.querySelectorAll('.dropdown-menu').forEach(d => d.style.display = 'none');
+                        dropdown.style.display = 'block';
+                        element.style.color = '#F37021'; 
+                    }
+                }
+            }
+        }
+
+        // 3. 翻译字典
+        const translations = {
+            'zh': {
+                'lang_select': '语言 / Language',
+                'tech_support': '技术支持',
+                'menu_gnss': 'GNSS 接收机',
+                'menu_mobile': '移动测绘',
+                'menu_ag': '农业导航',
+                'menu_marine': '海洋测量',
+                'menu_uav': '无人机系统',
+                'link_manual': '说明书',
+                'link_firmware': '固件',
+                'link_faq': 'FAQ',
+                'hero_title': '欢迎来到 <span>RUI</span> 技术支持',
+                'hero_desc': '您的说明书、固件和技术支持一站式中心。',
+                'card_fw_title': '你好',
+                'card_fw_desc': '欢迎关注',
+                'card_doc_title': '敬请期待',
+                'card_doc_desc': '敬请期待',
+                'card_ticket_title': '售后工单',
+                'card_ticket_desc': '遇到技术难题？提交工单，我们的工程师将为您解答。',
+                'btn_download': '更多 >',
+                'btn_browse': '浏览 >',
+                'btn_submit': '提交 >'
+            },
+            'en': {
+                'lang_select': 'Language',
+                'tech_support': 'Support',
+                'menu_gnss': 'GNSS Receivers',
+                'menu_mobile': 'Mobile Mapping',
+                'menu_ag': 'Agriculture',
+                'menu_marine': 'Marine Survey',
+                'menu_uav': 'UAV Systems',
+                'link_manual': 'Manual',
+                'link_firmware': 'Firmware',
+                'link_faq': 'FAQ',
+                'hero_title': 'Welcome to <span>RUI’s</span> Support',
+                'hero_desc': 'Your one-stop destination for Manuals, Firmware, and Assistance.',
+                'card_fw_title': 'Hello',
+                'card_fw_desc': 'HI))',
+                'card_doc_title': 'Stay tuned, soon!',
+                'card_doc_desc': 'Stay tuned, soon!',
+                'card_ticket_title': 'Support Ticket',
+                'card_ticket_desc': 'Facing issues? Submit a ticket to our engineers.',
+                'btn_download': 'More >',
+                'btn_browse': 'Browse >',
+                'btn_submit': 'Submit >'
+            },
+            'ru': {
+                'lang_select': 'Язык',
+                'tech_support': 'Поддержка',
+                'menu_gnss': 'ГНСС Приемники',
+                'menu_mobile': 'Мобильное картографирование',
+                'menu_ag': 'Агронавигация',
+                'menu_marine': 'Морская геодезия',
+                'menu_uav': 'БПЛА',
+                'link_manual': 'Инструкция',
+                'link_firmware': 'Прошивка',
+                'link_faq': 'FAQ',
+                'hero_title': 'Добро пожаловать в <span>RUI‘s</span>',
+                'hero_desc': 'Ваш единый центр документации, прошивок и техподдержки.',
+                'card_fw_title': 'Добро пожаловать!',
+                'card_fw_desc': 'Добро пожаловать!',
+                'card_doc_title': 'Оставайтесь , скоро!',
+                'card_doc_desc': 'Оставайтесь , скоро!RUI.',
+                'card_ticket_title': 'Техподдержка',
+                'card_ticket_desc': 'Возникли проблемы? Свяжитесь со мной.',
+                'btn_download': 'Более >',
+                'btn_browse': 'Обзор >',
+                'btn_submit': 'Отправить >'
+            },
+            'kk': {
+                'lang_select': 'Тіл',
+                'tech_support': 'Қолдау',
+                'menu_gnss': 'GNSS қабылдағыштары',
+                'menu_mobile': 'Мобильді картаға түсіру',
+                'menu_ag': 'Агронавигация',
+                'menu_marine': 'Теңіз геодезиясы',
+                'menu_uav': 'Ұшқышсыз жүйелер',
+                'link_manual': 'Нұсқаулық',
+                'link_firmware': 'Бағдарламалық жасақтама',
+                'link_faq': 'FAQ',
+                'hero_title': '<span>RUI’s</span> қолдау орталығы',
+                'hero_desc': 'Нұсқаулықтар, бағдарламалық жасақтама және көмек көрсету орталығы.',
+                'card_fw_title': 'Қош келдіңіз!',
+                'card_fw_desc': 'Қош келдіңіз!',
+                'card_doc_title': 'Хабардар болыңыз, жақын арада!',
+                'card_doc_desc': 'Хабардар болыңыз, жақын арада!',
+                'card_ticket_title': 'Қолдау билеті',
+                'card_ticket_desc': 'Мәселе бар ма? Инженерлерге сұрау жіберіңіз.',
+                'btn_download': 'Тағы >',
+                'btn_browse': 'Қарау >',
+                'btn_submit': 'Жіберу >'
+            },
+            'uz': {
+                'lang_select': 'Til',
+                'tech_support': 'Yordam',
+                'menu_gnss': 'GNSS qabul qiluvchilar',
+                'menu_mobile': 'Mobil xaritalash',
+                'menu_ag': 'Qishloq xo\'jaligi',
+                'menu_marine': 'Dengiz geodeziyasi',
+                'menu_uav': 'UAV tizimlari',
+                'link_manual': 'Qo\'llanma',
+                'link_firmware': 'Mikrodastur',
+                'link_faq': 'FAQ',
+                'hero_title': '<span>RUI"s</span> Yordam Markazi',
+                'hero_desc': 'Qo\'llanmalar va mikrodasturlar uchun yagona manzil.',
+                'card_fw_title': 'i93 Yangi mikrodastur',
+                'card_fw_desc': 'RUI i93 Visual IMU-RTK V2.1.0 chiqarildi.',
+                'card_doc_title': 'Hujjatlar kutubxonasi',
+                'card_doc_desc': 'Barcha RUI mahsulotlari uchun qo\'llanmalar.',
+                'card_ticket_title': 'Yordam so\'rovi',
+                'card_ticket_desc': 'Muammo bormi? Muhandislarimizga murojaat qiling.',
+                'btn_download': 'Yuklab olish >',
+                'btn_browse': 'Ko\'rish >',
+                'btn_submit': 'Yuborish >'
+            },
+             'mn': {
+                'lang_select': 'Хэл',
+                'tech_support': 'Дэмжлэг',
+                'menu_gnss': 'GNSS Хүлээн авагч',
+                'menu_mobile': 'Хөдөлгөөнт зураглал',
+                'menu_ag': 'Хөдөө аж ахуй',
+                'menu_marine': 'Далайн хэмжилт',
+                'menu_uav': 'Нисгэгчгүй төхөөрөмж',
+                'link_manual': 'Гарын авлага',
+                'link_firmware': 'Програм хангамж',
+                'link_faq': 'FAQ',
+                'hero_title': '<span>RUI"s</span> Дэмжлэгт тавтай морил',
+                'hero_desc': 'Гарын авлага, програм хангамж, техникийн туслалцааны нэгдсэн төв.',
+                'card_fw_title': 'Hi',
+                'card_fw_desc': 'Hi',
+                'card_doc_title': 'Stay tuned, soon!',
+                'card_doc_desc': 'Stay tuned, soon!',
+                'card_ticket_title': 'Тусламжийн хүсэлт',
+                'card_ticket_desc': 'Асуудал гарсан уу? Манай инженерүүдэд хандана уу.',
+                'btn_download': 'More >',
+                'btn_browse': 'Үзэх >',
+                'btn_submit': 'Илгээх >'
+            },
+            'ua':{
+                'lang_select': 'Мова / Language',
+                'tech_support': 'Технічна підтримка',
+                'menu_gnss': 'GNSS-приймачі',
+                'menu_mobile': 'Мобільне картографування',
+                'menu_ag': 'Агронавігація',
+                'menu_marine': 'Морські вимірювання',
+                'menu_uav': 'Системи БПЛА',
+                'link_manual': 'Інструкції',
+                'link_firmware': 'Прошивка',
+                'link_faq': 'Часті запитання (FAQ)',
+                'hero_title': 'Ласкаво просимо до технічної підтримки <span>RUI</span>',
+                'hero_desc': 'Ваш єдиний центр для інструкцій, прошивок та технічної підтримки.',
+                'card_fw_title': 'Вітаємо',
+                'card_fw_desc': 'Ласкаво просимо',
+                'card_doc_title': 'Скоро з’явиться',
+                'card_doc_desc': 'Скоро з’явиться',
+                'card_ticket_title': 'Сервісна заявка',
+                'card_ticket_desc': 'Виникли проблеми? Звяжіться зі мною.',
+                'btn_download': 'Більше >',
+                'btn_browse': 'Переглянути >',
+                'btn_submit': 'Надіслати >'
+            }
+        };
+
+        function changeLanguage(langCode) {
+            const dict = translations[langCode];
+            if (!dict) return;
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    if (dict[key].includes('<')) {
+                        el.innerHTML = dict[key];
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+        }
+        
+        /* --- 固件数据库 --- */
+        const firmwareDatabase = {
+            'i100': [
+                { version: 'v1.3.7', date: '2025-12-01', url: 'https://chcnavigation.jianguoyun.com/p/DYau6gcQtq_UCxjFtZMGIAA' },
+                { version: 'V1.3.5',          date: '2025-11-10', url: 'https://chcnavigation.jianguoyun.com/p/DYau6gcQtq_UCxjFtZMGIAA' },
+                { version: 'V1.2.13',          date: '2025-09-23', url: 'https://chcnavigation.jianguoyun.com/p/DYoSKLcQtq_UCxiYkY8GIAA' }
+            ],
+            'i93': [
+                { version: 'V1.3.8.2',     date: '2025-04-01', url: 'https://chcnavigation.jianguoyun.com/p/DeF3R4YQtq_UCxjKlfgFIAA' },
+                { version: 'V1.3.7',   date: '2024-12-12', url: 'https://chcnavigation.jianguoyun.com/p/DRpFc9AQtq_UCxi8pOUFIAA' },
+                { version: 'V1.3.6',   date: '2024-10-15', url: 'https://chcnavigation.jianguoyun.com/p/DbSr6HkQtq_UCxjWquIFIAA' },
+                { version: 'V1.2.9',   date: '2024-03-31', url: 'https://chcnavigation.jianguoyun.com/p/DUOUYD0Qtq_UCxjFhsgFIAA' }
+            ],
+            'i89':[
+                { version: 'V1.3.8',     date: '2024-12-27', url: 'https://chcnavigation.jianguoyun.com/p/DXYjrugQtq_UCxj-yeYFIAA' },
+                { version: 'V1.3.5',   date: '2024-10-15', url: 'https://chcnavigation.jianguoyun.com/p/DZ-RVnIQtq_UCxjXquIFIAA' },
+                { version: 'V1.2.9',   date: '2024-03-31', url: 'https://chcnavigation.jianguoyun.com/p/Dc7uFUMQtq_UCxiigcsFIAA' },
+                { version: 'V1.1.11',   date: '2023-11-14', url: 'https://chcnavigation.jianguoyun.com/p/DeaDxvoQtq_UCxjUvcYFIAA' },
+                { version: 'V1.1.6.10',   date: '2023-08-03', url: 'https://chcnavigation.jianguoyun.com/p/Dc_b5r4Qtq_UCxiFx5UGIAA' },
+                { version: 'V1.1.6.9',   date: '2023-07-18', url: 'https://chcnavigation.jianguoyun.com/p/DVNk3mMQtq_UCxiGx5UGIAA' },
+                { version:'OEM Board Firmware', date:'2025-02-28', url:'https://chcnavigation.jianguoyun.com/p/DQ4O7hUQtq_UCxjNjdgFIAA'},
+                { version:'Radio Firmware', date:'2025-02-28', url:'https://chcnavigation.jianguoyun.com/p/DXDybjUQtq_UCxiDx5UGIAA'}
+            ],
+            'i85':[
+                { version: 'V1.0.14',     date: '2025-09-15', url: 'https://chcnavigation.jianguoyun.com/p/DVDEQUkQtq_UCxit3o4GIAA' },
+                { version: 'V1.0.12',   date: '2025-08-26', url: 'https://chcnavigation.jianguoyun.com/p/Ddf4fVIQtq_UCxizx5UGIAA' }
+               
+
+            ],
+            'i83':[
+                { version: 'V1.3.11.2',     date: '2025-04-03', url: 'https://chcnavigation.jianguoyun.com/p/DYr_2AQQtq_UCxjvvvoFIAA' },
+                { version: 'V1.3.10',   date: '2025-01-23', url: 'https://chcnavigation.jianguoyun.com/p/DdjPGVgQtq_UCxif0esFIAA' },
+                { version: 'V1.3.8',   date: '2024-04-29', url: 'https://chcnavigation.jianguoyun.com/p/DT7ZTqMQtq_UCxiau9YFIAA' },
+                { version: 'V1.3.2.7',   date: '2023-05-26', url: 'https://chcnavigation.jianguoyun.com/p/DYftOugQtq_UCxi4usYFIAA' },
+                { version: 'V1.3.2.3',   date: '2023-03-22', url: 'https://chcnavigation.jianguoyun.com/p/Dbjby8wQtq_UCxjgx5UGIAA' },
+                { version: 'V1.2.8',   date: '2022-12-19', url: 'https://chcnavigation.jianguoyun.com/p/DQx9eEgQtq_UCxjhx5UGIAA' },
+                { version: 'V1.2.5',   date: '2022-07-19', url: 'https://chcnavigation.jianguoyun.com/p/Dbdm33IQtq_UCxjix5UGIAA' },
+                { version:'OEM Board Firmware', date:'#', url:'https://chcnavigation.jianguoyun.com/p/DaRS_mwQtq_UCxjQx5UGIAA'},
+                { version:'Radio Firmware', date:'#', url:'https://chcnavigation.jianguoyun.com/p/DbHNHeQQtq_UCxjRx5UGIAA'},
+            
+
+            ],
+            'i76':[
+                { version: 'V1.4.3.3',     date: '2025-09-26', url: 'https://chcnavigation.jianguoyun.com/p/DaWjPlgQtq_UCxjZlpIGIAA' },
+                { version: 'V1.4.3',   date: '2025-03-27', url: 'https://chcnavigation.jianguoyun.com/p/DQi4BBcQtq_UCxj_mYUGIAA' },
+                { version: 'V1.2.5',   date: '2024-09-04', url: 'https://chcnavigation.jianguoyun.com/p/DZzax2wQtq_UCxjtx5UGIAA' },
+                { version: 'V1.1.9.3',   date: '2024-07-04', url: 'https://chcnavigation.jianguoyun.com/p/DWtJswkQtq_UCxjk89gFIAA' },
+                { version:'OEM Board Firmware', date:'#', url:'https://chcnavigation.jianguoyun.com/p/DQvqKSsQtq_UCxiZqYsGIAA'}
+
+            ],
+            'i73':[
+                { version: 'V2.9.3',     date: '2025-09-25', url: 'https://chcnavigation.jianguoyun.com/p/DT5Dk6kQtq_UCxi6opMGIAA' },
+                { version: 'V2.6.5',   date: '2023-11-10', url: 'https://chcnavigation.jianguoyun.com/p/DcMlYS0Qtq_UCxiZx5UGIAA' },
+                { version: 'V2.5.1',   date: '2023-05-26', url: 'https://chcnavigation.jianguoyun.com/p/DZfnEUoQtq_UCxiYx5UGIAA' },
+                { version: 'V2.4.3',   date: '2022-05-12', url: 'https://chcnavigation.jianguoyun.com/p/DdfwKusQtq_UCxicx5UGIAA' },
+                { version: 'OEM Board Firmware',   date: '#', url: 'https://chcnavigation.jianguoyun.com/p/DQ-nkoQQtq_UCxiv-8sFIAA' },
+                { version: 'Radio Firmware',   date: '#', url: 'https://chcnavigation.jianguoyun.com/p/DeLyyCUQtq_UCxihx5UGIAA' }
+            ],
+            'p5u':[
+
+            ],
+            'p5e':[
+
+            ],
+            'lt60h':[
+                {version:'OS and Update tool', url:'https://chcnavigation.jianguoyun.com/p/DQ1ny7YQtq_UCxjiyJUGIAA'}
+            ],
+            'lt700':[
+                {version:'OS and Update tool', url:'https://chcnavigation.jianguoyun.com/p/DZ7YAjEQtq_UCxjgyJUGIAA'}
+            ],
+            'lt700h':[
+                {version:'OS and Update tool', url:'https://chcnavigation.jianguoyun.com/p/DdJv9fkQtq_UCxjW3ocGIAAA'}
+            ],
+            'lt800':[
+                {version:'OS and Update tool', url:'https://chcnavigation.jianguoyun.com/p/DSTkp2YQtq_UCxjjyJUGIAA'}
+            ],
+            'lt800h':[
+                {version:'OS and Update tool', url:'https://chcnavigation.jianguoyun.com/p/DUlm69oQtq_UCxjkyJUGIAA'}
+            ],
+            'landstar':[
+                {version:'LandStar-8.2.0.1.20251117', date:'2025-11-17',url:'https://chcnavigation.jianguoyun.com/p/DfkEdLsQtq_UCxjBtZMGIAA'},
+                {version:'LandStar-8.2.0.1.20250925', date:'2025-09-25',url:'https://chcnavigation.jianguoyun.com/p/Dc6dTGQQtq_UCxiSi4wGIAA'},
+                {version:'LandStar-8.2.0.1.20250827', date:'2025-08-27',url:'https://chcnavigation.jianguoyun.com/p/DQWn0G0Qtq_UCxjjjogGIAA'},
+        
+            ]
+        };
+
+        /* --- 说明书数据库 --- */
+        const manualDatabase = {
+            'i100': [
+                { 
+                    title: 'ViLi i100 User Manual.pdf', 
+                    date: '2025-09-10', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DfcMfJ0Qtq_UCxj6t4wGIAA' 
+                },
+            ],
+            'i93': [
+                { 
+                    title: 'i93 user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DbfejloQtq_UCxiztMMFIAA' 
+                }
+            ],
+             'i89': [
+                { 
+                    title: 'i89 user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DanI8GoQtq_UCxi0xMMFIAA' 
+                }
+            ],
+             'i85': [
+                { 
+                    title: 'i85 user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DedrIhAQtq_UCxiv04cGIAA' 
+                }
+            ],
+             'i83': [
+                { 
+                    title: 'i83 user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/Davkc5MQtq_UCxjuo-4FIAA' 
+                }
+            ],
+             'i76': [
+                { 
+                    title: 'i76 user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/Dd273WMQtq_UCxiulsQFIAA' 
+                }
+            ],
+             'i73': [
+                { 
+                    title: 'i73 user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DeXRRdoQtq_UCxibi84FIAA' 
+                }
+            ],
+            'p5u':[
+                 { 
+                    title: 'P5U user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DQNFHgQQtq_UCxjkj90FIAA' 
+                }
+
+            ],
+            'p5e':[
+                 { 
+                    title: 'P5E user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DT5cHrMQtq_UCxjCpN8FIAA' 
+                }
+
+            ],
+            'lt60h':[
+                 { 
+                    title: 'LT60H user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DQjVTn0Qtq_UCxjf9esFIAA' 
+                }
+
+            ],
+            'lt700':[
+                 { 
+                    title: 'LT700 user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DfhO2C4Qtq_UCxjQ74kGIAA' 
+                }
+
+            ],
+            'lt700h':[
+                {
+                 title: 'LT700H user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/Dcvg258Qtq_UCxiAiIgGIAA' 
+                }
+            ],
+            'lt800':[
+                 { 
+                    title: 'LT800 user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DWX-XA4Qtq_UCxjAhdUFIAA' 
+                }
+
+            ],
+            'lt800h':[
+                 { 
+                    title: 'LT800H user manual', 
+                    date: '', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DV6ILx8Qtq_UCxjnhdMFIAA' 
+                }
+                
+            ],
+            'landstar':[
+                { 
+                    title: 'LandStar8.2_User manual', 
+                    date: '2025-12-10', 
+                    url: 'https://chcnavigation.jianguoyun.com/p/DdM_hnIQtq_UCxiK64oGIAA' 
+                }
+            ]
+
+        };
+
+        /* --- 弹窗逻辑 (固件/说明书) --- */
+        function openFirmwareModal(productModel) {
+            const modal = document.getElementById('firmwareModal');
+            const title = document.getElementById('modalTitle');
+            const list = document.getElementById('modalList');
+            
+            title.textContent = productModel + ' Firmware';
+            list.innerHTML = '';
+            const data = firmwareDatabase[productModel];
+
+            if (!data || data.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#999;">No firmware available yet.</p>';
+            } else {
+                data.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'firmware-item';
+                    row.innerHTML = `
+                        <div class="fw-info">
+                            <span class="fw-version">${item.version}</span>
+                            <span class="fw-date">${item.date}</span>
+                        </div>
+                        <a href="${item.url}" class="fw-download-btn" download>Download</a>
+                    `;
+                    list.appendChild(row);
+                });
+            }
+            modal.style.display = 'block';
+        }
+
+        function openManualModal(productModel) {
+            const modal = document.getElementById('firmwareModal');
+            const title = document.getElementById('modalTitle');
+            const list = document.getElementById('modalList');
+            
+            title.textContent = productModel + ' Documents';
+            list.innerHTML = '';
+
+            const data = manualDatabase[productModel];
+
+            if (!data || data.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#999;">No documents available.</p>';
+            } else {
+                data.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'firmware-item'; 
+                    row.innerHTML = `
+                        <div class="fw-info">
+                            <span class="fw-version">${item.title}</span>
+                            <span class="fw-date">${item.date}</span>
+                        </div>
+                        <a href="${item.url}" class="fw-download-btn" target="_blank">View / Download</a>
+                    `;
+                    list.appendChild(row);
+                });
+            }
+            modal.style.display = 'block';
+        }
+
+        // 关闭 固件/说明书 弹窗
+        function closeModal() {
+            document.getElementById('firmwareModal').style.display = 'none';
+        }
+
+        /* ⬇️ 新增：联系方式弹窗的开关函数 ⬇️ */
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // ⬇️ 修改：点击窗口外部时，关闭任意打开的弹窗
+        window.onclick = function(event) {
+            const fwModal = document.getElementById('firmwareModal');
+            const contactModal = document.getElementById('contactModal');
+            
+            if (event.target == fwModal) {
+                fwModal.style.display = 'none';
+            }
+            if (event.target == contactModal) {
+                contactModal.style.display = 'none';
+            }
+        }
+    </script>
+
+    <div id="firmwareModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Firmware Download</h3>
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalList">
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Contact Support</h3>
+                <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p style="text-align:center; color:#666; margin-bottom:20px;">Please select a way to contact me:</p>
+                <ul class="contact-options">
+                    <a href="https://t.me/ccccrui" target="_blank" class="contact-item">
+                        <span class="icon">✈️</span>
+                        <div class="contact-text">
+                            <strong>Telegram</strong>
+                            <span>@ccccrui</span>
+                        </div>
+                    </a>
+
+                    <a href="https://wa.me/79895775258" target="_blank" class="contact-item">
+                        <span class="icon">🟢</span>
+                        <div class="contact-text">
+                            <strong>WhatsApp</strong>
+                            <span>+7 989 577 52 58</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:rui_chen@chcnav.com" class="contact-item">
+                        <span class="icon">📧</span>
+                        <div class="contact-text">
+                            <strong>Email</strong>
+                            <span>rui_chen@chcnav.com</span>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
